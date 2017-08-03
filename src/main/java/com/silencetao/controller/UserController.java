@@ -31,7 +31,6 @@ public class UserController {
     @RequestMapping("register")
     @ResponseBody
     public ResponseMessage<String> register(User user) {
-        System.out.println(user);
         return userService.register(user);
     }
 }
