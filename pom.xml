@@ -85,6 +85,12 @@
     	<artifactId>javax.servlet-api</artifactId>
     	<version>3.1.0</version>
     </dependency>
+    <dependency>
+	    <groupId>javax.websocket</groupId>
+	    <artifactId>javax.websocket-api</artifactId>
+	    <version>1.0</version>
+	    <scope>provided</scope>
+	</dependency>
     
     <!-- 4.spring依赖 -->
     <!-- 1)spring核心依赖 -->
@@ -129,6 +135,22 @@
     <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-test</artifactId>
+    	<version>4.1.7.RELEASE</version>
+    </dependency>
+    <!-- 5)spring webscoket相关依赖 -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-websocket</artifactId>
+    	<version>4.1.7.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-messaging</artifactId>
+    	<version>4.1.7.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context-support</artifactId>
     	<version>4.1.7.RELEASE</version>
     </dependency>
     
