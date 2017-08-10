@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.silencetao.common.ResponseMessage;
+import com.silencetao.common.SilenceResponse;
 import com.silencetao.entity.User;
+import com.silencetao.exception.SilenceException;
 import com.silencetao.service.UserService;
+import com.silencetao.util.EmailUtils;
 
 /**
  * User实体Controller层实现
@@ -30,7 +32,28 @@ public class UserController {
      */
     @RequestMapping("register")
     @ResponseBody
-    public ResponseMessage<String> register(User user) {
+    public SilenceResponse<String> register(User user) {
         return userService.register(user);
+    }
+    
+    /**
+     * 邮件发送测试
+     * @version 1.0.1 
+     * @param toEmail
+     * @return
+     */
+    @RequestMapping("sendEmail")
+    @ResponseBody
+    public SilenceResponse<String> sendEmail(String subject, String content, String toEmail) {
+        EmailUtils.sendEmail(toEmail, subject, content);
+        
+        return SilenceResponse.getSuccess();
+    }
+    
+    @RequestMapping("test")
+    @ResponseBody
+    public SilenceResponse<String> test() {
+        
+        throw new SilenceException("出错啦");
     }
 }

@@ -1,6 +1,6 @@
 package com.silencetao.service;
 
-import com.silencetao.common.ResponseMessage;
+import com.silencetao.common.SilenceResponse;
 import com.silencetao.entity.User;
 
 /**
@@ -11,5 +11,5 @@ import com.silencetao.entity.User;
  */
 public interface UserService {
 
-    ResponseMessage<String> register(User user);
+    SilenceResponse<String> register(User user);
 }

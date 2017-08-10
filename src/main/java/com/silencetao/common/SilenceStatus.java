@@ -6,7 +6,7 @@ package com.silencetao.common;
  * create time 2017年7月28日 下午2:10:38
  * @version 1.0.1
  */
-public enum ResponseCode {
+public enum SilenceStatus {
 
     /**
      * 请求成功时返回的状态
@@ -24,6 +24,16 @@ public enum ResponseCode {
     ILLEGAL_ARGUMENT(2, "illegal argument"),
     
     /**
+     * 系统错误
+     */
+    SYSTEM_ERROR(7, "system error"),
+    
+    /**
+     * 没有操作权限
+     */
+    PERMISSION_DENIED(8, "permission denied"),
+    
+    /**
      * 需要用户登录时返回的状态
      */
     NEED_LOGIN(10, "need login");
@@ -38,7 +48,7 @@ public enum ResponseCode {
      */
     private final String desc;
 
-    private ResponseCode(int code, String desc) {
+    private SilenceStatus(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }

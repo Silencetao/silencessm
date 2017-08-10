@@ -35,7 +35,12 @@
 	<body style="background: #F4F4F4;">
 		<div class="error-404">
 			<h1>500</h1>
-			<p>您要访问的页面好像出错了</p>
+			<p>
+				<c:choose>
+					<c:when test="${empty message }">您要访问的页面好像出错了</c:when>
+					<c:otherwise>${message }</c:otherwise>
+				</c:choose>
+			</p>
 			<a href="/">返回主页</a>
 		</div>
 	</body>
