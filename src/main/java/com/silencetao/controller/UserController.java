@@ -1,5 +1,8 @@
 package com.silencetao.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.silencetao.common.SilenceResponse;
 import com.silencetao.entity.User;
-import com.silencetao.exception.SilenceException;
 import com.silencetao.service.UserService;
 import com.silencetao.util.EmailUtils;
 
@@ -50,10 +52,21 @@ public class UserController {
         return SilenceResponse.getSuccess();
     }
     
-    @RequestMapping("test")
+    @RequestMapping("createSession")
     @ResponseBody
-    public SilenceResponse<String> test() {
+    public SilenceResponse<String> createSession(HttpServletRequest request, HttpSession session) {
+        session.setAttribute("message", "你好，nginx");
         
-        throw new SilenceException("出错啦");
+        return SilenceResponse.getSuccess();
+    }
+    
+    @RequestMapping("showSession")
+    @ResponseBody
+    public SilenceResponse<String> showSession(HttpServletRequest request, HttpSession session) {
+        String message = (String) session.getAttribute("message");
+        
+        System.out.println(message);
+        
+        return SilenceResponse.getSuccessMessage(message);
     }
 }

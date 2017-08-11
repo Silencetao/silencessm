@@ -59,4 +59,9 @@
 	
 	<!-- 7:统一异常处理 -->
 	<bean id="exceptionResolver" class="com.silencetao.exception.SilenceExceptionResolver"></bean>
+	
+	<!-- 8:注册拦截器 -->
+	<mvc:interceptors>
+		<bean class="com.silencetao.interceptor.SilenceInterceptor"></bean>
+	</mvc:interceptors>
 </beans>
