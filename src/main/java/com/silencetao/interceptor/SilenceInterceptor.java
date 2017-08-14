@@ -32,9 +32,6 @@ public class SilenceInterceptor implements HandlerInterceptor {
         
         String url = request.getRequestURI();
         
-        System.out.println(url);
-        System.out.println(request.getSession().getId());
-        
         for (String str : LOGIN_AUTH) {
             if (url.indexOf(str) >= 0 && !SessionUtils.isLogin(request)) {
                 /*
