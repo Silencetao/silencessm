@@ -2,7 +2,6 @@ package com.silencetao.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,7 @@ public class FileUtils {
      * @param realPath 上传文件的路径
      * @return 上传成功返回文件名，否则返回null
      */
-    public static String upload(MultipartFile file, String realPath) {
+    public static String upload(MultipartFile file, String targetPath) {
         String result = null;
         
         if (file == null || file.isEmpty()) {
@@ -36,19 +35,20 @@ public class FileUtils {
             throw new SilenceException(SilenceStatus.ILLEGAL_ARGUMENT, SilenceInfo.UPLOAD_FILE_EMPTY);
         }
         
-        String fileName = file.getOriginalFilename();
-        String fileUploadName = UUID.randomUUID().toString() + fileName.substring(fileName.lastIndexOf("."), fileName.length());
-        
+        String realPath = PropertiesUtils.getProperties("reourcesPath") + targetPath;
         File path = new File(realPath);
         if (!path.exists()) {
             path.mkdirs();
         }
         
+        String fileName = file.getOriginalFilename();
+        String fileUploadName = Long.toString(System.currentTimeMillis()) + StringUtils.getRandom(8) 
+                + fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        
         File fileGoal = new File(realPath + fileUploadName);
         try {
             file.transferTo(fileGoal);
-            result = fileUploadName;
-            logger.info("上传文件{}成功", fileUploadName);
+            result = targetPath + fileUploadName;
         } catch (IOException e) {
             logger.error(SilenceInfo.UPLOAD_FILE_FAILED, e);
             throw new SilenceException(SilenceStatus.ILLEGAL_ARGUMENT, SilenceInfo.UPLOAD_FILE_FAILED);

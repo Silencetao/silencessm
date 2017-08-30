@@ -55,7 +55,7 @@
 	</bean>
 	
 	<!-- 6:对文件上传的支持 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<bean id="multipartResolver" class="com.silencetao.listener.SilenceMultipartResolver" />
 	
 	<!-- 7:统一异常处理 -->
 	<bean id="exceptionResolver" class="com.silencetao.exception.SilenceExceptionResolver"></bean>
